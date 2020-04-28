@@ -9,6 +9,16 @@
 
 using namespace std;
 
+struct test_object
+{
+	string name;
+	double amount;
+	test_object(string&& name_, double am) :
+		name{move(name_)},
+		amount{am}
+	{}
+};
+
 int main()
 {
 	const int tests_amount = 10;
@@ -17,18 +27,18 @@ int main()
 	for (int i = 0; i < tests_amount; ++i)
 	{
 		auto beg = chrono::high_resolution_clock::now();
-		vector<tuple<string, double>> vec(10'000'000);
-		double cnt = 0;
-		generate(vec.begin(), vec.end(),
-			[&cnt]()
-			{
-				return tuple<string, double>{ to_string(cnt), cnt++ };
-			});
+		vector<test_object> vec;
+		vec.reserve(10'000'000);
+
+		for (int i = 0; i < vec.capacity(); ++i)
+		{
+			vec.emplace_back(to_string(i), i);
+		}
 
 		double sum = 0;
 		for (const auto& i : vec)
 		{
-			sum += get<double>(i);
+			sum += i.amount;
 		}
 
 		auto end = chrono::high_resolution_clock::now();
