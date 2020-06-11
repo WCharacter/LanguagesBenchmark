@@ -36,7 +36,6 @@ namespace CoreTest
             }
             Console.WriteLine("Mean: {0} ms.", (double)time_total / tests_amount);
             Console.ReadLine();
-            Console.Read();
         }
 
         static IEnumerable<double> Range(double begin, double end = 0, double step = 1)
