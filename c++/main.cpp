@@ -1,11 +1,9 @@
 #include <iostream>
 #include <string>
-#include <iomanip>
 #include <vector>
-#include <numeric>
-#include <tuple>
 #include <chrono>
 #include <algorithm>
+#include <iomanip>
 
 using namespace std;
 
